@@ -47,10 +47,10 @@ variable "aws_lab_key_pair" {
 }
 
 
-variable "aws_lab_tag_instance" {
-  default = {
-      Name              = "lab-tf-ec2-jenkins"
-      Environment       = "development"
-      Project           = "lab-tf-infra"
- }
-}
+#variable "aws_lab_tag_instance" {
+#  default = {
+#      Name              = "lab-tf-ec2-jenkins"
+#      Environment       = "development"
+#      Project           = "lab-tf-infra"
+# }
+#}
