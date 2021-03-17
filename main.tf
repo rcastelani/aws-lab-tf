@@ -1,9 +1,9 @@
 # main.tf
 
 provider "aws" {
-    access_key = "" ### access_key_id
-    secret_key = "" ### access_pwd_id
-    region = "${aws_lab_region}"
+#    access_key = "" ### access_key_id
+#    secret_key = "" ### access_pwd_id
+    region = "${var.aws_lab_region}"
 }
 
 ## Create VPC ##
@@ -12,7 +12,7 @@ resource "aws_vpc" "terraform-vpc" {
   instance_tenancy = "default"
   enable_dns_hostnames = true
   tags = {
-    Name = "${aws_lab_vpc}"
+    Name = "${var.aws_lab_vpc}"
   }
 }
 
@@ -24,7 +24,7 @@ resource "aws_vpc" "terraform-vpc" {
 resource "aws_security_group" "terraform_private_sg" {
   description = "Allow limited inbound external traffic"
   vpc_id      = "${aws_vpc.terraform-vpc.id}"
-  name        = "${aws_lab_sg}"
+  name        = "${var.aws_lab_sg}"
 
   ingress {
     protocol    = "tcp"
@@ -48,7 +48,7 @@ resource "aws_security_group" "terraform_private_sg" {
   }
 
   tags = {
-    Name = "${aws_lab_tag_sg}"
+    Name = "${var.aws_lab_tag_sg}"
   }
 }
 
@@ -60,10 +60,10 @@ resource "aws_security_group" "terraform_private_sg" {
 resource "aws_subnet" "terraform-subnet_1" {
   vpc_id     = "${aws_vpc.terraform-vpc.id}"
   cidr_block = "10.0.1.0/24"
-  availability_zone = "${aws_lab_region}"
+  availability_zone = "${var.aws_lab_region}"
 
   tags = {
-    Name = "${aws_lab_subnet1}"
+    Name = "${var.aws_lab_subnet1}"
   }
 }
 
@@ -73,18 +73,18 @@ resource "aws_subnet" "terraform-subnet_1" {
 
 resource "aws_instance" "ec2_instance" {
     ami = "${var.aws_lab_ami}"
-	count = "${var.aws_lab_num_instances}
-    instance_type = "t2.micro"
+	count = "${var.aws_lab_num_instances}"
+    instance_type = "${var.aws_lab_instance_type}"
     vpc_security_group_ids =  [ "${aws_security_group.terraform_private_sg.id}" ]
     subnet_id = "${aws_subnet.terraform-subnet_1.id}"
-	key_name               = "terraform-demo" ### key_pair
+	key_name               = "${var.aws_lab_key_pair}" 
     count         = 1
 #   associate_public_ip_address = true
     tags = {
-      Name              = "terraform_ec2_wapp_awsdev"
-      Environment       = "development"
-      Project           = "DEMO-TERRAFORM"
+	Name = "${lookup(var.tags,"Name")}"
+	Environment = "${lookup(var.tags,"Environment")}"
+	Project = "${lookup(var.tags,"Project")}"
     }
 }
 
-#output "instance_id_list"     { value = ["${aws_instance.ec2_instance.*.id}"] }
+# output "instance_id_list"     { value = ["${aws_instance.ec2_instance.*.id}"] }
