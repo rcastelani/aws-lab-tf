@@ -80,9 +80,9 @@ resource "aws_instance" "ec2_instance" {
 	key_name               = var.aws_lab_key_pair 
 #   associate_public_ip_address = true
     tags = {
-	Name = lookup(var.tags,"Name")
-	Environment = lookup(var.tags,"Environment")
-	Project = lookup(var.tags,"Project")
+	Name = var.tags[Name]
+	Environment = var.tags[Environment]
+	Project = var.tags[Project]
     }
 }
 
