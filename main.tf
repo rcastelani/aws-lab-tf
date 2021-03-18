@@ -80,8 +80,7 @@ resource "aws_instance" "ec2_instance" {
 	key_name               = var.aws_lab_key_pair 
 #   associate_public_ip_address = true
     tags = {
-	"Name" = keys(var.aws_lab_region)[count.index]	
-	#"Name" = format("lab-tf-ec2-jenkins", count.index + var.initial_count)
+	Name = keys(var.aws_lab_tag_instance)[count.index]	
     }
 }
 
