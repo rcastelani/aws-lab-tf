@@ -47,5 +47,5 @@ variable "aws_lab_key_pair" {
 }
 
 variable "aws_lab_tag_instance" {
-    Name    = "lab-tf-ec2-jenkins"
+    name    = "lab-tf-ec2-jenkins"
 }
