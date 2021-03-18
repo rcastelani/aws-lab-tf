@@ -33,7 +33,7 @@ variable "aws_lab_ami" {
 
 variable "aws_lab_num_instances" {
   description = "number of instances to make"
-  default = 1
+  default = 2
 }
 
 variable "aws_lab_instance_type" {
