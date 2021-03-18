@@ -80,7 +80,7 @@ resource "aws_instance" "ec2_instance" {
 	key_name               = var.aws_lab_key_pair 
 #   associate_public_ip_address = true
     tags = {
-    Name = var.aws_lab_tag_instance["Name"],[count.index]
+    Name = var.aws_lab_tag_instance["Name"(count.index)]
     Environment = var.aws_lab_tag_instance["development"]
     Project = var.aws_lab_tag_instance["lab-tf-infra"]
     }
