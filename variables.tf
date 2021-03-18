@@ -36,6 +36,12 @@ variable "aws_lab_num_instances" {
   default = 2
 }
 
+variable "initial_count" {
+  description = "number of instances to make"
+  default = 0
+}
+
+
 variable "aws_lab_instance_type" {
   description = "number of instances to make"
   default = "t2.micro"
