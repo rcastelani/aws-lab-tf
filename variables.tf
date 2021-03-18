@@ -54,5 +54,6 @@ variable "aws_lab_key_pair" {
 
 variable "aws_lab_tag_instance" {
     description = "tag name"
+    type        = string
     default    = "lab-tf-ec2-jenkins"
 }
