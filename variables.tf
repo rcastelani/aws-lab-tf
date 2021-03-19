@@ -6,27 +6,27 @@ variable "aws_lab_region" {
 }
 
 variable "aws_lab_vpc" {
-  description = "def region in main.tf"
+  description = "def vpc name in main.tf"
   default= "lab-tf-vpc"
 }
 
 variable "aws_lab_sg" {
-  description = "def region in main.tf"
+  description = "def sec group name in main.tf"
   default= "lab-tf-sg"
 }
 
 variable "aws_lab_tag_sg" {
-  description = "def region in main.tf"
+  description = "def sec group tag name in main.tf"
   default = "ec2-private-sg"
 }
 
 variable "aws_lab_subnet1" {
-  description = "def region in main.tf"
+  description = "def subnet name in main.tf"
   default = "lab-tf-sn1"
 }
 
 variable "aws_lab_ami" {
-  description = "def region in main.tf"
+  description = "def image ami in main.tf"
   default = "ami-01eb71e14cef400e2"
 }
 
@@ -36,24 +36,18 @@ variable "aws_lab_num_instances" {
   default = 2
 }
 
-variable "initial_count" {
-  description = "number of instances to make"
-  default = 0
-}
-
-
 variable "aws_lab_instance_type" {
-  description = "number of instances to make"
+  description = "def instance type name in main.tf"
   default = "t2.micro"
 }
 
 variable "aws_lab_key_pair" {
-  description = "number of instances to make"
+  description = "def keypair name in main.tf"
   default = "lab-tf-key" 
 }
 
 variable "aws_lab_tag_instance" {
-    description = "tag name"
+    description = "def tag of instance name in main.tf"
     type        = string
     default    = "lab-tf-ec2-jenkins"
 }
