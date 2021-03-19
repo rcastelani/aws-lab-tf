@@ -73,13 +73,15 @@ resource "aws_subnet" "terraform-subnet_1" {
 
 resource "aws_instance" "ec2_instance" {
     ami = var.aws_lab_ami
-	count = var.aws_lab_num_instances
+    count = var.aws_lab_num_instances
     instance_type = var.aws_lab_instance_type
     vpc_security_group_ids =  [ aws_security_group.terraform_private_sg.id ]
     subnet_id = aws_subnet.terraform-subnet_1.id
-	key_name               = var.aws_lab_key_pair 
+    key_name               = var.aws_lab_key_pair 
     associate_public_ip_address = true
-    tags = {
+    user_data = file("userdata.sh")
+
+tags = {
 	Name = "aws_lab_tag_instance-${count.index}"	
     }
 }
