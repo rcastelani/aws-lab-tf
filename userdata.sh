@@ -1,1 +1,1 @@
-echo "alaaalllaalaaallouha" > /root/teste
+echo "teste" > /root/teste
