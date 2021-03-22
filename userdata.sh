@@ -1,1 +1,1 @@
-touch /root/teste
+echo "alllou" > /root/teste
