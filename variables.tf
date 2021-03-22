@@ -51,3 +51,13 @@ variable "aws_lab_tag_instance" {
     type        = string
     default    = "lab-tf-ec2-jenkins"
 }
+
+variable default_ingress {
+  type = map(object({description = string, cidr_blocks = list(string)}))
+  default = {
+    22 = { description = "Inbound para SSH", cidr_blocks = [ "127.0.0.1/32" ]}
+    80 = { description = "Inbound para HTTP", cidr_blocks = [ "127.0.0.1/32" ]}
+    443 = { description = "Inbound para HTTPS", cidr_blocks = [ "127.0.0.1/32" ]}
+    5432 = { description = "Inbound para PostgreSQL", cidr_blocks = [ "127.0.0.1/32" ]}
+  } 
+}
