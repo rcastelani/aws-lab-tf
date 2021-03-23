@@ -28,11 +28,6 @@ pipeline{
                 sh label: '', script: 'terraform validate'
             }
         }
-            stage('plan Terraform'){
-            steps{
-                sh label: '', script: 'terraform apply --auto-approve'
-            }
-        }
         stage('apply Terraform'){
             steps{
                 sh label: '', script: 'terraform apply --auto-approve'
